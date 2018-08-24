@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ContactCreateComponent } from './contact-create/contact-create.component';
+import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ContactCreateComponent } from './contact-create/contact-create.componen
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    UiModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
