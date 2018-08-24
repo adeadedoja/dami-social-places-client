@@ -1,17 +1,78 @@
-<p>
-  contact-create works!
-</p>
-<form [formGroup]="contactForm" (ngSubmit)="onFormSubmit(contactForm.value)">
-  <input type="text" class="form-control" formControlName="name" #name />
-  <div *ngIf="contactForm.controls['name'].invalid && (contactForm.controls['name'].dirty || contactForm.controls['name'].touched)"
-    class="alert alert-danger">
-    <div *ngIf="contactForm.controls['name'].errors.required">
-      Name is required.
+<div class="contact">
+  <div class="row">
+    <div class="col-md-4 px-5 py-3">
+        <div class="d-flex flex-row align-items-center h-100">
+          <h2 class="contact__greeting"><span class="text-danger">We would love </span> to say Hi to you. <br/>Just because.</h2>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="contact__container">
+            <div class="contact__container__top text-center">
+                <img src="assets/images/fall.svg" class="img-fluid contact__container__top__img" alt="contact greeting image" />
+                <p><b>SocialPlaces</b> <span class="text-muted">Contact</span></p>
+            </div>
+            <form [formGroup]="contactForm" (ngSubmit)="onFormSubmit(contactForm.value)" class="contact__form">
+                <div class="form-group">
+                  <label for="contactForm" class="text-danger">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                    </span> Please fill in contact details
+                  </label>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <input type="text" class="form-control" id="contactname" placeholder="Your name" formControlName="name" #name />
+                      <div *ngIf="contactForm.controls['name'].invalid && (contactForm.controls['name'].dirty || contactForm.controls['name'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="contactForm.controls['name'].errors.required">
+                          Name is required.
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="email" class="form-control" id="contactemail" placeholder="Your email" formControlName="email" #email />
+                    <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="contactForm.controls['email'].errors.required">
+                        Email is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <input type="text" class="form-control" id="contactphone" placeholder="Your phone number" formControlName="phone" #phone
+                      />
+                      <div *ngIf="contactForm.controls['phone'].invalid && (contactForm.controls['phone'].dirty || contactForm.controls['phone'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="contactForm.controls['phone'].errors.required">
+                          Phone is required.
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="contactsubject" placeholder="What do you want to talk about" formControlName="subject" #subject />
+                    <div *ngIf="contactForm.controls['subject'].invalid && (contactForm.controls['subject'].dirty || contactForm.controls['subject'].touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="contactForm.controls['subject'].errors.required">
+                        The subject of message is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" id="contactmessage" placeholder="Talk to us..." rows="4" formControlName="message" #message></textarea>
+                  <div *ngIf="contactForm.controls['message'].invalid && (contactForm.controls['message'].dirty || contactForm.controls['message'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="contactForm.controls['message'].errors.required">
+                      The body of the message is required.
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-danger"><i class="fa fa-envelope-o"></i> Get in touch</button>
+            </form>
+        </div>
     </div>
   </div>
-  <input type="text" class="form-control" formControlName="email" #email />
-  <input type="text" class="form-control" formControlName="phone" #phone />
-  <input type="text" class="form-control" formControlName="subject" #subject />
-  <input type="text" class="form-control" formControlName="message" #message />
-  <input type="submit" value="submit" />
-</form>
+</div>
