@@ -11,14 +11,30 @@
                 <img src="assets/images/fall.svg" class="img-fluid contact__container__top__img" alt="contact greeting image" />
                 <p><b>SocialPlaces</b> <span class="text-muted">Contact</span></p>
             </div>
+            <div class="alert alert-success mb-2" role="alert" *ngIf="isSent">
+                <b>Howdy, {{ senderName }}. </b>Thanks for filling in the form, this message has been saved in the database and a message has been sent to you.
+            </div>
             <form [formGroup]="contactForm" (ngSubmit)="onFormSubmit(contactForm.value)" class="contact__form">
-                <div class="form-group">
-                  <label for="contactForm" class="text-danger">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-circle fa-stack-2x"></i>
-                      <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                    </span> Please fill in contact details
-                  </label>
+              <fieldset [disabled]="disabledValue">
+                <div *ngIf="!showLoader">
+                    <div class="form-group">
+                      <div *ngIf="!contactForm.valid">    
+                          <label for="contactForm" class="text-danger">
+                            <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                            </span> Please fill in contact details
+                          </label>
+                      </div>
+                      <div *ngIf="contactForm.valid">
+                          <label for="contactForm" class="text-success">
+                            <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                            </span> Contact details filled in, now submit the form
+                          </label>
+                      </div>
+                    </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
@@ -37,6 +53,7 @@
                       <div *ngIf="contactForm.controls['email'].errors.required">
                         Email is required.
                       </div>
+                      <div *ngIf="contactForm.controls['email'].errors.email">Email must be a valid email address</div>
                     </div>
                   </div>
                 </div>
@@ -52,7 +69,7 @@
                       </div>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="contactsubject" placeholder="What do you want to talk about" formControlName="subject" #subject />
+                    <input type="text" class="form-control" id="contactsubject" placeholder="Subject of the message" formControlName="subject" #subject />
                     <div *ngIf="contactForm.controls['subject'].invalid && (contactForm.controls['subject'].dirty || contactForm.controls['subject'].touched)"
                       class="alert alert-danger">
                       <div *ngIf="contactForm.controls['subject'].errors.required">
@@ -70,7 +87,12 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-danger"><i class="fa fa-envelope-o"></i> Get in touch</button>
+                <button type="submit" class="btn btn-danger" [disabled]="!contactForm.valid">
+                    <i class="fa fa-envelope-o"></i> Get in touch 
+                    <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="showLoader"></i>
+                    <span class="sr-only">Loading...</span>
+                </button>
+              </fieldset>
             </form>
         </div>
     </div>

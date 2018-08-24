@@ -6,7 +6,7 @@ html {
   position: relative;
   min-height: 100%;
 }
-body {font-family: 'Poppins', sans-serif; font-size: 0.75rem; margin-bottom: 60px; background: url('assets/images/bg.png') right;}
+body {font-family: 'Poppins', sans-serif; font-size: 0.75rem; margin-bottom: 60px; background: url('assets/images/2bg.jpg') left center no-repeat;}
 .form-control {font-size: 0.75rem; border: none; -webkit-box-shadow: 1px 1px 1px 0px rgba(224,224,224,1);-moz-box-shadow: 1px 1px 1px 0px rgba(224,224,224,1);box-shadow: 1px 1px 1px 0px rgba(224,224,224,1);}
 .btn {font-size: 0.75rem;border-radius: 0;}
 footer {position: absolute;bottom: 0;width: 100%;height: 60px;}
