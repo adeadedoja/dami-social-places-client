@@ -34,7 +34,7 @@ export class APIService {
   //method to create contact, sends a POST request to already created symfony REST route
 
   createContact(contact): Observable<any> {
-    const url = apiUrl+'/api/contact/store';
+    const url = 'https://jsonplaceholder.typicode.com/posts';
     return this.http.post(url, contact, httpOptions)
       .pipe(
       catchError(this.handleError)
